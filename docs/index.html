@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#12233f">
+    <meta name="description" content="CampusFlow 校园学生信息管理系统静态演示">
+    <title>CampusFlow · 学生信息管理系统</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="主导航">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3.5 9.3 12 4l8.5 5.3L12 14 3.5 9.3Z" stroke-linejoin="round"/>
+              <path d="M6.3 11.2v4.5c2.8 2.2 8.6 2.2 11.4 0v-4.5M20.5 10v5.1" stroke-linecap="round"/>
+              <circle cx="20.5" cy="17.2" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>CampusFlow</strong>
+            <small>校园管理平台</small>
+          </span>
+        </div>
+
+        <div class="sidebar-label">工作台</div>
+        <nav class="nav-list">
+          <button class="nav-item is-active" type="button" data-view-target="dashboard">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+            </span>
+            <span>仪表盘</span>
+          </button>
+          <button class="nav-item" type="button" data-view-target="students">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.8 19.5c.6-3.1 2.3-4.7 5.2-4.7s4.7 1.6 5.2 4.7" stroke-linecap="round"/><path d="M15.5 5.3c2.6.4 3.2 3.6 1.2 5.2M16 14.9c2.4.2 3.8 1.8 4.3 4.6" stroke-linecap="round"/></svg>
+            </span>
+            <span>学生档案</span>
+            <span class="nav-count" id="nav-student-count">8</span>
+          </button>
+          <button class="nav-item" type="button" data-view-target="data-center">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>
+            </span>
+            <span>数据中心</span>
+          </button>
+          <button class="nav-item" type="button" data-view-target="about">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.8v5.1" stroke-linecap="round"/><circle cx="12" cy="7.5" r=".9" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span>使用说明</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <div class="storage-card">
+          <div class="storage-heading">
+            <span class="status-dot"></span>
+            <span>演示模式</span>
+            <span class="storage-label">本地保存</span>
+          </div>
+          <p>数据只保存在当前浏览器中，适合课堂展示和功能演练。</p>
+          <button class="storage-reset" type="button" data-action="reset-data">重置演示数据 <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="sidebar-footer">v1.0 · Python 程序设计课程</div>
+      </aside>
+
+      <div class="mobile-backdrop" id="mobile-backdrop"></div>
+      <main class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobile-menu" type="button" aria-label="打开导航" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+          </button>
+          <div class="topbar-title">
+            <span class="eyebrow">校园管理 / <span id="current-section">仪表盘</span></span>
+            <h1 id="page-heading">早上好，管理员 <span class="wave" aria-hidden="true">✦</span></h1>
+          </div>
+          <div class="topbar-actions">
+            <span class="demo-chip"><span class="status-dot"></span>静态演示</span>
+            <button class="icon-button" type="button" data-action="show-notice" aria-label="查看提示" title="查看提示">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 9.5a6 6 0 0 0-12 0c0 7-2.5 7-2.5 8.5h17C20.5 16.5 18 16.5 18 9.5ZM10 21h4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3V1.8" stroke-linecap="round"/></svg>
+              <span class="notification-dot"></span>
+            </button>
+            <div class="profile">
+              <span class="avatar">管</span>
+              <span class="profile-copy"><strong>管理员</strong><small>Administrator</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m7 10 5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </header>
+
+        <div class="page-wrap">
+          <section class="view is-visible" data-view="dashboard" aria-labelledby="page-heading">
+            <div class="hero-card">
+              <div class="hero-copy">
+                <span class="hero-kicker">周三 · <span id="hero-date">2026年9月2日</span></span>
+                <h2>把每一份学生档案，<br><em>都安排得井井有条。</em></h2>
+                <p>今天也来看看班级数据，处理需要跟进的学生档案吧。</p>
+                <button class="primary-button hero-button" type="button" data-view-target="students">查看学生档案 <span aria-hidden="true">→</span></button>
+              </div>
+              <div class="hero-art" aria-hidden="true">
+                <div class="art-orbit orbit-one"></div>
+                <div class="art-orbit orbit-two"></div>
+                <div class="art-spark spark-one">✦</div>
+                <div class="art-spark spark-two">·</div>
+                <div class="art-card art-card-back"></div>
+                <div class="art-card art-card-main">
+                  <span class="art-avatar">学</span>
+                  <span class="art-lines"><i></i><i></i><i></i></span>
+                  <span class="art-check">✓</span>
+                </div>
+                <div class="art-pill pill-one">已归档</div>
+                <div class="art-pill pill-two">+24%</div>
+              </div>
+            </div>
+
+            <div class="section-heading stats-heading">
+              <div><span class="section-kicker">实时概览</span><h2>今天的校园数据</h2></div>
+              <span class="last-updated">数据实时更新 · <span id="last-updated">刚刚</span></span>
+            </div>
+            <div class="stats-grid">
+              <article class="stat-card stat-card-navy">
+                <div class="stat-top"><span class="stat-label">学生总数</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3.8 19.5c.6-3.1 2.3-4.7 5.2-4.7s4.7 1.6 5.2 4.7M15.5 5.3c2.6.4 3.2 3.6 1.2 5.2M16 14.9c2.4.2 3.8 1.8 4.3 4.6" stroke-linecap="round"/></svg></span></div>
+                <div class="stat-value" id="stat-total">8</div>
+                <div class="stat-foot"><span class="trend trend-up">↗ <span id="stat-total-trend">12.5%</span></span><span>较上月</span></div>
+              </article>
+              <article class="stat-card stat-card-cream">
+                <div class="stat-top"><span class="stat-label">男生人数</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="5.2"/><path d="m14 6 5-5m-4 0h4v4M10 7.5v5M7.5 10h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+                <div class="stat-value" id="stat-male">4</div>
+                <div class="stat-foot"><span class="trend trend-up">↗ <span id="stat-male-trend">8.3%</span></span><span>较上月</span></div>
+              </article>
+              <article class="stat-card stat-card-mint">
+                <div class="stat-top"><span class="stat-label">女生人数</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="9" r="4.7"/><path d="M10 13.7v7M7.3 18h5.4M18.5 4.5V2m-1.5 1.5h3M14 5.5l3-3" stroke-linecap="round"/></svg></span></div>
+                <div class="stat-value" id="stat-female">4</div>
+                <div class="stat-foot"><span class="trend trend-flat">→ <span id="stat-female-trend">2.1%</span></span><span>较上月</span></div>
+              </article>
+              <article class="stat-card stat-card-lilac">
+                <div class="stat-top"><span class="stat-label">班级数量</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V9l8-5 8 5v11M8 20v-5h8v5M2.8 20h18.4M8 10h.1M12 10h.1M16 10h.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+                <div class="stat-value" id="stat-classes">4</div>
+                <div class="stat-foot"><span class="trend trend-up">↗ <span id="stat-class-trend">4.7%</span></span><span>较上月</span></div>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <article class="panel class-panel">
+                <div class="panel-heading"><div><span class="section-kicker">班级分布</span><h2>各班学生人数</h2></div><button class="text-button" type="button" data-view-target="students">查看全部 <span aria-hidden="true">→</span></button></div>
+                <div class="bar-chart" id="class-chart" aria-label="各班学生人数图表"></div>
+              </article>
+              <article class="panel recent-panel">
+                <div class="panel-heading"><div><span class="section-kicker">最新动态</span><h2>最近加入的学生</h2></div><button class="round-arrow" type="button" data-view-target="students" aria-label="查看所有学生">→</button></div>
+                <div class="recent-list" id="recent-list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="students" aria-labelledby="students-heading" hidden>
+            <div class="view-intro">
+              <div><span class="section-kicker">档案管理</span><h2 id="students-heading">学生档案</h2><p>维护学生基础信息，支持搜索、筛选和快速编辑。</p></div>
+              <button class="primary-button" type="button" data-action="open-add"><span aria-hidden="true">＋</span> 新增学生</button>
+            </div>
+            <div class="panel table-panel">
+              <div class="toolbar">
+                <label class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5" stroke-linecap="round"/></svg><input id="student-search" type="search" placeholder="搜索姓名或学号" autocomplete="off"><kbd>⌘ K</kbd></label>
+                <div class="toolbar-actions">
+                  <label class="select-wrap"><span class="sr-only">按班级筛选</span><select id="class-filter"><option value="">全部班级</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
+                  <label class="select-wrap"><span class="sr-only">按性别筛选</span><select id="gender-filter"><option value="">全部性别</option><option value="男">男生</option><option value="女">女生</option><option value="其他">其他</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
+                  <button class="outline-button" type="button" data-action="export-csv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2.2c0 1 0.8 1.8 1.8 1.8h12.4c1 0 1.8-.8 1.8-1.8V17" stroke-linecap="round" stroke-linejoin="round"/></svg><span>导出</span></button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="student-table">
+                  <thead><tr><th class="check-col"><input id="select-all" type="checkbox" aria-label="选择全部当前记录"></th><th>学号</th><th>姓名</th><th>性别</th><th>年龄</th><th>班级</th><th>联系电话</th><th class="action-col">操作</th></tr></thead>
+                  <tbody id="student-tbody"></tbody>
+                </table>
+                <div class="table-empty" id="table-empty" hidden><span class="empty-icon">⌕</span><h3>没有找到匹配的学生</h3><p>试试更换关键词或清空筛选条件。</p><button class="text-button" type="button" data-action="clear-filters">清空筛选</button></div>
+              </div>
+              <div class="table-footer"><span id="table-summary">显示 1-8 条，共 8 条</span><div class="pagination" id="pagination"></div></div>
+            </div>
+          </section>
+
+          <section class="view" data-view="data-center" aria-labelledby="data-heading" hidden>
+            <div class="view-intro"><div><span class="section-kicker">数据管理</span><h2 id="data-heading">数据中心</h2><p>将演示数据导出留档，或从 CSV 文件批量导入学生档案。</p></div></div>
+            <div class="data-grid">
+              <article class="panel action-panel">
+                <span class="large-action-icon icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2.2c0 1 0.8 1.8 1.8 1.8h12.4c1 0 1.8-.8 1.8-1.8V17" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <h3>导出学生档案</h3><p>下载 UTF-8 CSV 文件，可用 Excel 打开或作为备份保存。</p><button class="outline-button full-button" type="button" data-action="export-csv">导出 CSV <span aria-hidden="true">→</span></button>
+              </article>
+              <article class="panel action-panel">
+                <span class="large-action-icon icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3m0 0L8 7m4-4 4 4M4 14v4.2c0 1 0.8 1.8 1.8 1.8h12.4c1 0 1.8-.8 1.8-1.8V14" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <h3>导入学生档案</h3><p>选择带有六列字段的 CSV 文件，导入前会自动检查重复学号。</p><label class="outline-button full-button file-button">选择 CSV 文件 <span aria-hidden="true">→</span><input id="csv-input" type="file" accept=".csv,text/csv"></label>
+              </article>
+              <article class="panel reset-panel">
+                <div class="reset-heading"><span class="large-action-icon icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6v5h5M5 11a7 7 0 1 1 1.7 6.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><h3>重置演示数据</h3><p>恢复系统内置的 8 条示例记录。</p></span></div><button class="danger-button" type="button" data-action="reset-data">恢复初始数据</button>
+              </article>
+            </div>
+            <div class="panel schema-panel"><div class="panel-heading"><div><span class="section-kicker">文件格式</span><h2>CSV 字段说明</h2></div><span class="format-badge">UTF-8 · CSV</span></div><div class="schema-list"><div><b>学号</b><span>必填 · 不能重复</span></div><div><b>姓名</b><span>必填 · 2–20 个字符</span></div><div><b>性别</b><span>男 / 女 / 其他</span></div><div><b>年龄</b><span>必填 · 1–120 的整数</span></div><div><b>班级</b><span>必填 · 例如：高一（1）班</span></div><div><b>联系电话</b><span>数字、空格或连字符</span></div></div></div>
+          </section>
+
+          <section class="view" data-view="about" aria-labelledby="about-heading" hidden>
+            <div class="view-intro"><div><span class="section-kicker">快速上手</span><h2 id="about-heading">使用说明</h2><p>用三分钟熟悉 CampusFlow 的核心操作。</p></div></div>
+            <div class="guide-grid">
+              <article class="panel guide-card"><span class="guide-number">01</span><h3>浏览数据</h3><p>从左侧进入“学生档案”，在搜索框输入姓名或学号，也可以按班级、性别筛选。</p><button class="text-button" type="button" data-view-target="students">打开学生档案 →</button></article>
+              <article class="panel guide-card"><span class="guide-number">02</span><h3>维护档案</h3><p>点击“新增学生”填写六项资料。每条记录都可以编辑或删除，学号不能重复。</p><button class="text-button" type="button" data-action="open-add">新增一条记录 →</button></article>
+              <article class="panel guide-card"><span class="guide-number">03</span><h3>保存与迁移</h3><p>所有修改会自动保存到当前浏览器。数据中心支持 CSV 导入导出，方便课堂演示和备份。</p><button class="text-button" type="button" data-view-target="data-center">进入数据中心 →</button></article>
+            </div>
+            <div class="panel about-note"><span class="note-icon">✦</span><div><h3>这是一个静态演示版本</h3><p>页面发布在 GitHub Pages 上，浏览器会用 localStorage 保存数据。它不连接服务器；清理浏览器站点数据会删除演示中的修改，点击“重置演示数据”也可以恢复初始记录。</p></div></div>
+          </section>
+        </div>
+        <footer class="main-footer"><span>CampusFlow 学生信息管理系统</span><span>数据仅保存在本机浏览器 · <button type="button" class="footer-link" data-view-target="about">了解更多</button></span></footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <section class="modal" id="student-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">档案信息</span><h2 id="modal-title">新增学生</h2></div><button class="modal-close" type="button" data-action="close-modal" aria-label="关闭">×</button></div>
+      <form id="student-form" novalidate>
+        <input type="hidden" id="editing-id">
+        <div class="form-grid">
+          <label class="field"><span>学号 <i>*</i></span><input id="field-student-id" name="student_id" required maxlength="24" placeholder="例如：20240001"><small class="field-error" data-error-for="student_id"></small></label>
+          <label class="field"><span>姓名 <i>*</i></span><input id="field-name" name="name" required maxlength="20" placeholder="请输入姓名"><small class="field-error" data-error-for="name"></small></label>
+          <label class="field"><span>性别 <i>*</i></span><select id="field-gender" name="gender" required><option value="">请选择</option><option value="男">男</option><option value="女">女</option><option value="其他">其他</option></select><small class="field-error" data-error-for="gender"></small></label>
+          <label class="field"><span>年龄 <i>*</i></span><input id="field-age" name="age" type="number" required min="1" max="120" placeholder="请输入年龄"><small class="field-error" data-error-for="age"></small></label>
+          <label class="field field-wide"><span>班级 <i>*</i></span><input id="field-class" name="class_name" required maxlength="30" placeholder="例如：高一（1）班"><small class="field-error" data-error-for="class_name"></small></label>
+          <label class="field field-wide"><span>联系电话</span><input id="field-phone" name="phone" maxlength="24" placeholder="例如：138-0000-0000"><small class="field-error" data-error-for="phone"></small></label>
+        </div>
+        <div class="modal-footer"><button class="outline-button" type="button" data-action="close-modal">取消</button><button class="primary-button" type="submit" id="modal-submit">保存学生</button></div>
+      </form>
+    </section>
+
+    <section class="modal detail-modal" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">档案预览</span><h2 id="detail-title">学生详情</h2></div><button class="modal-close" type="button" data-action="close-modal" aria-label="关闭">×</button></div><div id="detail-content"></div><div class="modal-footer"><button class="outline-button" type="button" data-action="close-modal">关闭</button><button class="primary-button" type="button" id="detail-edit">编辑档案</button></div>
+    </section>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <script src="assets/app.js" defer></script>
+  </body>
+</html>
