@@ -6,6 +6,8 @@
 
 一个面向程序设计课程大作业的学生信息管理系统。项目同时提供 Flask 本地接口版和无需服务器的 GitHub Pages 静态演示版，覆盖学生档案的增删改查、搜索筛选、统计、CSV 导入导出和命令行菜单。
 
+> 在线演示 / Live demo：[CampusFlow GitHub Pages](https://kanfanle233.github.io/campus-student-management-system/)
+
 > **Project nickname / 项目昵称：蹦迪项目**  
 > The repository name uses the functional product name `campus-student-management-system`, while the course project can still be referred to as “蹦迪项目”.
 
